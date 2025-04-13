@@ -1,0 +1,5 @@
+(executable
+ (public_name vocabulary)
+ (name main)
+ (libraries vocabulary yojson)
+)
