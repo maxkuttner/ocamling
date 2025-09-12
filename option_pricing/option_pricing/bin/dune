@@ -1,4 +1,0 @@
-(executable
- (public_name option_pricing)
- (name main)
- (libraries option_pricing))

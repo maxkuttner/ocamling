@@ -1,3 +1,0 @@
-(library
- (name option_pricing)
- (libraries owl))

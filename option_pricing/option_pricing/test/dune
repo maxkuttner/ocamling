@@ -1,3 +1,0 @@
-(test
- (name test_option_pricing)
- (libraries option_pricing ounit2 owl))
