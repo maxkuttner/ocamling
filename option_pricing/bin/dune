@@ -1,4 +1,4 @@
 (executable
  (name main)
  (modules main)
- (libraries camlquant))
+ (libraries camlquant owl owl-plplot))
