@@ -37,6 +37,7 @@ let vega ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t =
   let d1v = d1 ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t in
   s *. norm_pdf d1v *. sqrt t
 
+(* 1st derivative wrt. maturity *)
 let theta kind ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t =
   let d1v = d1 ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t in
   let d2v = d2 ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t in
@@ -46,7 +47,15 @@ let theta kind ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t =
   | Call -> term_time -. term_rate *. norm_cdf d2v
   | Put  -> term_time +. term_rate *. norm_cdf (-. d2v)
 
-(* black scholes *)
+(* 1st derivateive wrt. to interest rate*)
+let rho kind ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t =
+  let d2v = d2 ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t in
+  match kind with
+    | Call -> k *. t *. exp (-. r *. t) *. norm_cdf d2v
+    | Put -> -. k *. t *. exp (-. r *. t) *. norm_cdf (-. d2v)
+
+
+  (* black scholes *)
 let black_scholes kind ~spot:s ~strike:k ~rate:r ~vol:sigma ~maturity:t =
   if 
     t <= 0.0 then payoff kind ~spot:s ~strike:k
