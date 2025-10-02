@@ -1,4 +1,4 @@
 (library
  (name camlquant)
  (public_name camlquant)
- (libraries owl owl-plplot))
+ (libraries owl owl-plplot csv))
