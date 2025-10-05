@@ -1,66 +1,9 @@
-open Trading
+open Types
 
 (* This shall replace the option specific strategy module*)
 
 
-(* Core instrument types *)
-type option_type = Call | Put
-
-type option_core = {
-  underlying: string;
-  quote_date: string;
-  expiration: string;
-  strike: float;
-  option_type: option_type;
-  price: float;
-  underlying_price: float;
-}
-
-type stock = {
-  symbol: string;
-  date: string;
-  price: float;
-}
-
-type instrument = 
-  | Stock of stock
-  | Option of option_core
-
-
-type side = Long | Short
-
-(* Generic instrument leg *)
-type leg = {
-  instrument: instrument;
-  side: side;
-  quantity: float;
-  entry_price: float
-}
-
-(* Position status *)
-type position_status = 
-  | Open 
-  | Closed of close_reason and
-  close_reason = 
-    | TakeProfit 
-    | StopLoss 
-    | Expiration
-    | DTE_threshold
-    | Manual
-
-
-(* A position is one or more legs *)
-type position = {
-  id: string;  (* Unique identifier *)
-  entry_date: string;
-  description: string;  (* "Long 100 AAPL", "Short Straddle SPY 440", etc *)
-  legs: leg list;
-  status: position_status;
-}
-
-
 (* Helper functions *)
-
 let sign = function Long -> 1.0 | Short -> -1.0
 
 (* Get the underlying symbol of an instrument *)

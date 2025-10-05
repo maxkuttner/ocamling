@@ -1,7 +1,5 @@
 open Utils
-
-(* Option Type *)
-type option_type = Call | Put
+open Types
 
 (* simple payoffs *)
 let payoff kind ~spot:s ~strike:k = 

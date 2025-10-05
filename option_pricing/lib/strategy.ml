@@ -1,11 +1,15 @@
+
+(*TODO: Consider this peace as ´under construction´*)
+
 module Strategy = struct
   open Pricing
+  
 
   type side = Long | Short
 
   type leg = {
     side: side;
-    kind: option_type;
+    kind: Types.option_type;
     k: float;
     t: float;
     qty: float; 
