@@ -184,6 +184,7 @@ let () =
   Printf.printf "Number of legs: %d\n" (List.length ic_pos.legs);
   Printf.printf "Max profit: $%.2f\n" (abs_float (entry_cost ic_pos));
   Printf.printf "Max loss: $%.2f\n\n" (10.0 *. 100.0 -. abs_float (entry_cost ic_pos));
+  
 
   (* Summary *)
   Printf.printf "=== Summary ===\n";
